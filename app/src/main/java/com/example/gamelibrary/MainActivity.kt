@@ -33,8 +33,19 @@ class MainActivity : AppCompatActivity(), loginComm {
     }
 
     // loginComm methods
-    override fun commLogin() {
-        TODO("Not yet implemented")
+    override fun commLogin(email: String, password: String) {
+        mAuth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    Log.d(TAG, "signInWithEmail:success")
+                    val user = mAuth.currentUser
+
+                } else {
+                    Log.w(TAG, "signInWithEmail:failure", task.exception)
+                    Toast.makeText(baseContext, "Authentication failed.",
+                        Toast.LENGTH_SHORT).show()
+                }
+            }
     }
 
     // send user to sign up

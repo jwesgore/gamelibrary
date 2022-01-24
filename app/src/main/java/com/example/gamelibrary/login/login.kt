@@ -1,6 +1,7 @@
 package com.example.gamelibrary.login
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -54,14 +55,16 @@ class login : Fragment() {
 
         // onclick methods
         signin.setOnClickListener {
-            // get input
-            val emailIn = email.text.toString()
-            val passIn  = password.text.toString()
+
+            var data : Pair<String, String>
 
             // submit to Firestore
-
-
-            loginInterface.commLogin()
+            try {
+                data = checkValues(email, password)
+                loginInterface.commLogin(data.first, data.second)
+            } catch (e : Exception) {
+                Log.d(TAG, e.toString())
+            }
         }
         signup.setOnClickListener {
             loginInterface.commSignup()
@@ -71,6 +74,27 @@ class login : Fragment() {
         }
 
         return view
+    }
+
+    fun checkValues(email : EditText, password : EditText) : Pair<String,String> {
+        val emailIn    = email.text.toString()
+        val passwordIn = password.text.toString()
+
+        // check for blank values
+        if (emailIn.isBlank()) {
+            email.setError("Please enter a valid email")
+            email.requestFocus()
+            throw Exception("no email")
+        }
+
+        if (passwordIn.isBlank()) {
+            password.setError("Please enter a password")
+            password.requestFocus()
+            throw Exception("no password")
+        }
+
+        // everything is hunkydory
+        return Pair(emailIn, passwordIn)
     }
 
     companion object {

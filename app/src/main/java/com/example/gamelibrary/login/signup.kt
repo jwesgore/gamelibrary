@@ -82,19 +82,19 @@ class signup : Fragment() {
         val password2In = password2.text.toString()
 
         // check for blank values
-        if (name.text.isBlank()) {
+        if (nameIn.isBlank()) {
             name.setError("Name field is empty, please enter a name")
             name.requestFocus()
             throw Exception("name missing")
         }
 
-        if (email.text.isBlank()) {
+        if (emailIn.isBlank()) {
             email.setError("Email field is empty, please enter an email")
             email.requestFocus()
             throw Exception("email missing")
         }
 
-        if (password1.text.isBlank()) {
+        if (password1In.isBlank()) {
             password1.setError("Password field is empty, please enter a password")
             password1.requestFocus()
             throw Exception("password1 missing")
