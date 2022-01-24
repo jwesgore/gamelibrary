@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp">
+
+    <ImageView
+        android:id="@+id/List_imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_gallery" />
+
+    <TextView
+        android:id="@+id/List_textViewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:text="Title"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/List_imageView"
+        app:layout_constraintStart_toEndOf="@+id/List_imageView"
+        app:layout_constraintTop_toTopOf="@+id/List_imageView" />
+
+    <TextView
+        android:id="@+id/List_textViewYear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Year"
+        app:layout_constraintBottom_toBottomOf="@+id/List_textViewTitle"
+        app:layout_constraintStart_toEndOf="@+id/List_textViewTitle" />
+
+    <TextView
+        android:id="@+id/List_textViewPlatform"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Platform"
+        app:layout_constraintBottom_toBottomOf="@+id/List_textViewYear"
+        app:layout_constraintEnd_toEndOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

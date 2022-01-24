@@ -9,6 +9,7 @@ import com.example.gamelibrary.app.home
 import com.example.gamelibrary.login.loginComm
 import com.example.gamelibrary.login.signup
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -26,25 +27,31 @@ class MainActivity : AppCompatActivity(), loginComm {
 
     override fun onStart() {
         super.onStart()
-        val currentUser = mAuth.currentUser
-//        if (currentUser != null) {
-//            reload()
-//        }
+        val user = mAuth.currentUser
+        if (user != null) { commLogin(user) }
     }
 
     // loginComm methods
+    // login user
+    override fun commLogin(user: FirebaseUser) {
+        supportFragmentManager.beginTransaction().
+            replace(R.id.mainFragmentContainerView, home()).addToBackStack(null).
+            commit()
+    }
+
+    // check login credentials
     override fun commLogin(email: String, password: String) {
         mAuth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     Log.d(TAG, "signInWithEmail:success")
-                    val user = mAuth.currentUser
 
-                    supportFragmentManager.beginTransaction().
-                        replace(R.id.mainFragmentContainerView, home()).addToBackStack(null).
-                        commit()
+                    val user = mAuth.currentUser
+                    if (user != null) { commLogin(user) }
+
                 } else {
                     Log.w(TAG, "signInWithEmail:failure", task.exception)
+
                     Toast.makeText(baseContext, "Authentication failed.",
                         Toast.LENGTH_SHORT).show()
                 }

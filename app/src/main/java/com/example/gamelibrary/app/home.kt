@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import com.example.gamelibrary.R
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -36,6 +38,10 @@ class home : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view : View = inflater.inflate(R.layout.fragment_home, container, false)
+        val appComm = activity as appComm
+
+        val recyclerView : RecyclerView = view.findViewById(R.id.Home_recyclerView)
+        val button       : FloatingActionButton = view.findViewById(R.id.Home_floatingActionButton)
 
         return view
     }
