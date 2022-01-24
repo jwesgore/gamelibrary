@@ -5,10 +5,10 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.gamelibrary.app.home
 import com.example.gamelibrary.login.loginComm
 import com.example.gamelibrary.login.signup
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -40,6 +40,9 @@ class MainActivity : AppCompatActivity(), loginComm {
                     Log.d(TAG, "signInWithEmail:success")
                     val user = mAuth.currentUser
 
+                    supportFragmentManager.beginTransaction().
+                        replace(R.id.mainFragmentContainerView, home()).addToBackStack(null).
+                        commit()
                 } else {
                     Log.w(TAG, "signInWithEmail:failure", task.exception)
                     Toast.makeText(baseContext, "Authentication failed.",

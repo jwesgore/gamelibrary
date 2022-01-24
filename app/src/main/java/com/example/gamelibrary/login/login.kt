@@ -58,7 +58,6 @@ class login : Fragment() {
 
             var data : Pair<String, String>
 
-            // submit to Firestore
             try {
                 data = checkValues(email, password)
                 loginInterface.commLogin(data.first, data.second)
