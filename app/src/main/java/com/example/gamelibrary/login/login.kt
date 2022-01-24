@@ -54,6 +54,13 @@ class login : Fragment() {
 
         // onclick methods
         signin.setOnClickListener {
+            // get input
+            val emailIn = email.text.toString()
+            val passIn  = password.text.toString()
+
+            // submit to Firestore
+
+
             loginInterface.commLogin()
         }
         signup.setOnClickListener {
