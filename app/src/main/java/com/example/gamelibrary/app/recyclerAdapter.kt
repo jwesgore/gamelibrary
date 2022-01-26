@@ -39,7 +39,7 @@ class recyclerAdapter(private val data : ArrayList<GameFile>) :  RecyclerView.Ad
 
         holder.title.text    = game.title
         holder.year.text     = game.year.toString()
-        holder.platform.text = game.platform
+        //holder.platform.text = game.platform
 
     }
 
