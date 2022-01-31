@@ -16,12 +16,14 @@
 
     <TextView
         android:id="@+id/List_textViewTitle"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
+        android:layout_marginEnd="8dp"
         android:text="Title"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/List_imageView"
+        app:layout_constraintEnd_toStartOf="@+id/List_textViewYear"
         app:layout_constraintStart_toEndOf="@+id/List_imageView"
         app:layout_constraintTop_toTopOf="@+id/List_imageView" />
 
@@ -29,10 +31,10 @@
         android:id="@+id/List_textViewYear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
         android:text="Year"
         app:layout_constraintBottom_toBottomOf="@+id/List_textViewTitle"
-        app:layout_constraintStart_toEndOf="@+id/List_textViewTitle" />
+        app:layout_constraintEnd_toStartOf="@+id/List_textViewPlatform" />
 
     <TextView
         android:id="@+id/List_textViewPlatform"
