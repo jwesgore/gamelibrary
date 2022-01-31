@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import com.example.gamelibrary.app.GameFile
 import com.example.gamelibrary.app.addGame
 import com.example.gamelibrary.app.appComm
 import com.example.gamelibrary.app.home
@@ -14,6 +16,7 @@ import com.example.gamelibrary.login.signup
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity(), loginComm, appComm {
@@ -98,4 +101,11 @@ class MainActivity : AppCompatActivity(), loginComm, appComm {
             replace(R.id.mainFragmentContainerView, addGame()).
             addToBackStack(null).commit()
     }
+
+    override fun addGameFile(game: GameFile) {
+        supportFragmentManager.popBackStack()
+        val db   = Firebase.firestore
+        db.collection("switch").add(game)
+    }
+
 }

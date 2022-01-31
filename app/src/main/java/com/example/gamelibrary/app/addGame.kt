@@ -1,10 +1,14 @@
 package com.example.gamelibrary.app
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
 import com.example.gamelibrary.R
 
 // TODO: Rename parameter arguments, choose names that match
@@ -35,7 +39,43 @@ class addGame : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_game, container, false)
+        val view : View = inflater.inflate(R.layout.fragment_add_game, container, false)
+        val appComm : appComm = activity as appComm
+
+        val title   : EditText = view.findViewById(R.id.AddGame_editTextTitle)
+        val year    : EditText = view.findViewById(R.id.AddGame_editTextYear)
+        val add     : Button   = view.findViewById(R.id.AddGame_buttonAdd)
+        val cancel  : Button   = view.findViewById(R.id.AddGame_buttonCancel)
+
+        add.setOnClickListener {
+            try {
+                val game: GameFile = checkValues(title, year)
+                appComm.addGameFile(game)
+            } catch (e : Exception) {
+                Log.d(TAG, e.toString())
+            }
+        }
+
+        return view
+    }
+
+    fun checkValues(title: EditText, year: EditText): GameFile {
+        val titleIn = title.text.toString()
+        val yearIn  = year.text.toString()
+
+        if (titleIn.isBlank()) {
+            title.setError("No title entered")
+            title.requestFocus()
+            throw Exception("no title")
+        }
+
+        if (yearIn.isBlank()) {
+            year.setError("No year entered")
+            year.requestFocus()
+            throw Exception("no year")
+        }
+
+        return GameFile(titleIn, yearIn)
     }
 
     companion object {
