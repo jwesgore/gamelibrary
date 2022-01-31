@@ -5,6 +5,9 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.RecyclerView
+import com.example.gamelibrary.app.addGame
+import com.example.gamelibrary.app.appComm
 import com.example.gamelibrary.app.home
 import com.example.gamelibrary.login.loginComm
 import com.example.gamelibrary.login.signup
@@ -13,7 +16,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
-class MainActivity : AppCompatActivity(), loginComm {
+class MainActivity : AppCompatActivity(), loginComm, appComm {
 
     private lateinit var mAuth: FirebaseAuth
 
@@ -81,5 +84,18 @@ class MainActivity : AppCompatActivity(), loginComm {
 
     override fun commForgot() {
         TODO("Not yet implemented")
+    }
+
+    // appComm Methods
+    // update recycler data
+    override fun UpdateRecycler() {
+        val recyclerView : RecyclerView = findViewById(R.id.Home_recyclerView)
+        recyclerView.adapter?.notifyDataSetChanged()
+    }
+
+    override fun gotoAddGame() {
+        supportFragmentManager.beginTransaction().
+            replace(R.id.mainFragmentContainerView, addGame()).
+            addToBackStack(null).commit()
     }
 }
