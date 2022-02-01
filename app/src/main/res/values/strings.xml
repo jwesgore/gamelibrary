@@ -16,4 +16,9 @@
     <string name="add_cancel">Cancel</string>
     <string name="add_title">Title</string>
     <string name="add_year">Year</string>
+    <string name="add_physical">Physical</string>
+    <string name="add_digital">Digital</string>
+    <string name="add_case">Case</string>
+    <string name="add_manual">Manual</string>
+    <string name="add_platform">Platform</string>
 </resources>

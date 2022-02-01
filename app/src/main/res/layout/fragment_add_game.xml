@@ -13,8 +13,9 @@
         android:layout_marginTop="16dp"
         android:text="@string/add_add"
         app:layout_constraintEnd_toEndOf="@+id/AddGame_editTextYear"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/AddGame_editTextYear"
-        app:layout_constraintTop_toBottomOf="@+id/AddGame_editTextYear" />
+        app:layout_constraintTop_toBottomOf="@+id/AddGame_chipGroup" />
 
     <Button
         android:id="@+id/AddGame_buttonCancel"
@@ -23,6 +24,7 @@
         android:layout_marginTop="16dp"
         android:text="@string/add_cancel"
         app:layout_constraintEnd_toEndOf="@+id/AddGame_buttonAdd"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/AddGame_buttonAdd"
         app:layout_constraintTop_toBottomOf="@+id/AddGame_buttonAdd" />
 
@@ -53,4 +55,56 @@
         app:layout_constraintEnd_toEndOf="@+id/AddGame_editTextTitle"
         app:layout_constraintStart_toStartOf="@+id/AddGame_editTextTitle"
         app:layout_constraintTop_toBottomOf="@+id/AddGame_editTextTitle" />
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/AddGame_chipGroup"
+        style="@style/Widget.MaterialComponents.Chip.Choice"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/AddGame_autoCompleteTextViewPlatform"
+        app:layout_constraintStart_toStartOf="@+id/AddGame_autoCompleteTextViewPlatform"
+        app:layout_constraintTop_toBottomOf="@+id/AddGame_autoCompleteTextViewPlatform">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/AddGame_chipPhysicalGame"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_physical" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/AddGame_chipDigitalGame"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_digital" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/AddGame_chipCase"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_case" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/AddGame_chipManual"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_manual" />
+    </com.google.android.material.chip.ChipGroup>
+
+    <AutoCompleteTextView
+        android:id="@+id/AddGame_autoCompleteTextViewPlatform"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="@string/add_platform"
+        android:minHeight="48dp"
+        android:singleLine="true"
+        app:layout_constraintEnd_toEndOf="@+id/AddGame_editTextYear"
+        app:layout_constraintStart_toStartOf="@+id/AddGame_editTextYear"
+        app:layout_constraintTop_toBottomOf="@+id/AddGame_editTextYear" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

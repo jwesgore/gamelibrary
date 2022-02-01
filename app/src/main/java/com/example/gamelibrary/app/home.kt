@@ -75,6 +75,7 @@ class home : Fragment() {
                 for (snapshot in DocumentSnapshot) {
                     Log.d(TAG, snapshot.toString())
                     val gameFile = GameFile(snapshot["title"].toString(), snapshot["year"].toString())
+                    gameFile.platform = snapshot["platform"].toString()
                     data.add(gameFile)
                 }
             appComm.UpdateRecycler()
