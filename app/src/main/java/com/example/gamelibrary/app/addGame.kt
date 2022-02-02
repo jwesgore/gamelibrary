@@ -72,6 +72,7 @@ class addGame : Fragment() {
         add.setOnClickListener {
             try {
                 var game: GameFile = checkValues(title, year, platform)
+                game.platformAbv = getAbv(game.platform)
                 appComm.addGameFile(game)
             } catch (e : Exception) {
                 Log.d(TAG, e.toString())
@@ -80,16 +81,32 @@ class addGame : Fragment() {
 
         cancel.setOnClickListener {  }
 
-
-
         return view
     }
 
+    // get abreviation
+    private fun getAbv(platform: String): String {
+
+        // retrieve abv from brackets if it exists
+        if (platform.contains('(') && platform.contains(')')) {
+            var abv = platform.substringBefore(')')
+            abv = abv.substringAfter('(')
+            return abv
+        }
+
+        // otherwise just return the platform
+        return platform
+    }
+
+     // check input for errors and return gamefile
     private fun checkValues(title: EditText, year: EditText, platform: AutoCompleteTextView): GameFile {
+
+         // extract input values
         val titleIn    = title.text.toString()
         val yearIn     = year.text.toString()
         val platformIn = platform.text.toString()
 
+         // check for blank input
         if (titleIn.isBlank()) {
             title.setError("No title entered")
             title.requestFocus()
@@ -108,6 +125,7 @@ class addGame : Fragment() {
             throw Exception("no platform")
         }
 
+         // build and return gamefile
         var game = GameFile(titleIn, yearIn)
         game.platform = platformIn
         return game

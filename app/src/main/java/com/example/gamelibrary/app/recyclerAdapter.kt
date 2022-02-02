@@ -8,10 +8,17 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gamelibrary.R
 
-class recyclerAdapter(private val data : ArrayList<GameFile>) :  RecyclerView.Adapter<recyclerAdapter.ViewHolder>() {
+class recyclerAdapter(private val data : ArrayList<GameFile>) :
+    RecyclerView.Adapter<recyclerAdapter.ViewHolder>() {
+
+    private lateinit var appComm: appComm
+
+    fun setOnItemClick(listener : appComm) {
+        appComm = listener
+    }
 
     // build abstract holder
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(view: View, listener: appComm) : RecyclerView.ViewHolder(view) {
 
         // fill holder with references to views
         val title    : TextView
@@ -25,12 +32,17 @@ class recyclerAdapter(private val data : ArrayList<GameFile>) :  RecyclerView.Ad
             year     = view.findViewById(R.id.List_textViewYear)
             platform = view.findViewById(R.id.List_textViewPlatform)
             image    = view.findViewById(R.id.List_imageView)
+
+            view.setOnClickListener {
+                listener.onItemClick(adapterPosition)
+            }
         }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.recycler_list, parent, false)
-        return ViewHolder(view)
+        return ViewHolder(view, appComm)
     }
 
     // populate holder with values
@@ -39,7 +51,7 @@ class recyclerAdapter(private val data : ArrayList<GameFile>) :  RecyclerView.Ad
 
         holder.title.text    = game.title
         holder.year.text     = game.year
-        holder.platform.text = game.platform
+        holder.platform.text = game.platformAbv
         //holder.platform.text = game.platform
 
     }

@@ -7,10 +7,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
-import com.example.gamelibrary.app.GameFile
-import com.example.gamelibrary.app.addGame
-import com.example.gamelibrary.app.appComm
-import com.example.gamelibrary.app.home
+import com.example.gamelibrary.app.*
 import com.example.gamelibrary.login.loginComm
 import com.example.gamelibrary.login.signup
 import com.google.firebase.auth.FirebaseAuth
@@ -22,6 +19,7 @@ import com.google.firebase.ktx.Firebase
 class MainActivity : AppCompatActivity(), loginComm, appComm {
 
     private lateinit var mAuth: FirebaseAuth
+    private lateinit var data: ArrayList<GameFile>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +32,9 @@ class MainActivity : AppCompatActivity(), loginComm, appComm {
     override fun onStart() {
         super.onStart()
         val user = mAuth.currentUser
-        if (user != null) { commLogin(user) }
+        if (user != null) {
+            commLogin(user)
+        }
     }
 
     // loginComm methods
@@ -91,7 +91,9 @@ class MainActivity : AppCompatActivity(), loginComm, appComm {
 
     // appComm Methods
     // update recycler data
-    override fun UpdateRecycler() {
+    override fun UpdateRecycler(data : ArrayList<GameFile>) {
+        this.data = data
+
         val recyclerView : RecyclerView = findViewById(R.id.Home_recyclerView)
         recyclerView.adapter?.notifyDataSetChanged()
     }
@@ -106,6 +108,19 @@ class MainActivity : AppCompatActivity(), loginComm, appComm {
         supportFragmentManager.popBackStack()
         val db   = Firebase.firestore
         db.collection("switch").add(game)
+    }
+
+    override fun onItemClick(position: Int) {
+        val game = data[position]
+        val bundle = Bundle()
+        val frag = gameDetails()
+
+        bundle.putSerializable("game",game)
+        frag.arguments = bundle
+
+        supportFragmentManager.beginTransaction().
+        replace(R.id.mainFragmentContainerView, frag).
+        addToBackStack(null).commit()
     }
 
 }

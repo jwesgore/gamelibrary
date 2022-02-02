@@ -58,10 +58,13 @@ class home : Fragment() {
         var data : ArrayList<GameFile> = ArrayList()
         var recyclerAdapter = recyclerAdapter(data)
 
+        recyclerAdapter.setOnItemClick(appComm)
+
         recyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = recyclerAdapter
         }
+
 
         getData(data, appComm)
 
@@ -75,10 +78,11 @@ class home : Fragment() {
                 for (snapshot in DocumentSnapshot) {
                     Log.d(TAG, snapshot.toString())
                     val gameFile = GameFile(snapshot["title"].toString(), snapshot["year"].toString())
-                    gameFile.platform = snapshot["platform"].toString()
+                    gameFile.platform    = snapshot["platform"].toString()
+                    gameFile.platformAbv = snapshot["platformAbv"].toString()
                     data.add(gameFile)
                 }
-            appComm.UpdateRecycler()
+            appComm.UpdateRecycler(data)
         }
     }
 

@@ -10,6 +10,7 @@
         android:id="@+id/List_imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_gallery" />
@@ -19,11 +20,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginEnd="8dp"
         android:text="Title"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/List_imageView"
-        app:layout_constraintEnd_toStartOf="@+id/List_textViewYear"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/List_imageView"
         app:layout_constraintTop_toTopOf="@+id/List_imageView" />
 
@@ -31,16 +30,17 @@
         android:id="@+id/List_textViewYear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
         android:text="Year"
-        app:layout_constraintBottom_toBottomOf="@+id/List_textViewTitle"
-        app:layout_constraintEnd_toStartOf="@+id/List_textViewPlatform" />
+        app:layout_constraintStart_toStartOf="@+id/List_textViewTitle"
+        app:layout_constraintTop_toBottomOf="@+id/List_textViewTitle" />
 
     <TextView
         android:id="@+id/List_textViewPlatform"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:text="Platform"
         app:layout_constraintBottom_toBottomOf="@+id/List_textViewYear"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/List_textViewYear" />
 </androidx.constraintlayout.widget.ConstraintLayout>
