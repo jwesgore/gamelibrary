@@ -1,8 +1,8 @@
 package com.example.gamelibrary.app
 
 interface appComm {
-    fun UpdateRecycler(data : ArrayList<GameFile>): Unit
-    fun gotoAddGame(): Unit
-    fun addGameFile(game: GameFile): Unit
-    fun onItemClick(position: Int) : Unit
+    fun UpdateRecycler(data : ArrayList<GameFile>)
+    fun gotoAddGame()
+    fun addGameFile(game: GameFile)
+    fun onItemClick(position: Int)
 }

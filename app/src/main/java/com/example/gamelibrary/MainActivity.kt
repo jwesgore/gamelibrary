@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gamelibrary.app.*
 import com.example.gamelibrary.login.loginComm
@@ -41,7 +40,7 @@ class MainActivity : AppCompatActivity(), loginComm, appComm {
     // login user
     override fun commLogin(user: FirebaseUser) {
         supportFragmentManager.beginTransaction().
-            replace(R.id.mainFragmentContainerView, home()).addToBackStack(null).
+            replace(R.id.mainFragmentContainerView, Home()).addToBackStack(null).
             commit()
     }
 
@@ -100,7 +99,7 @@ class MainActivity : AppCompatActivity(), loginComm, appComm {
 
     override fun gotoAddGame() {
         supportFragmentManager.beginTransaction().
-            replace(R.id.mainFragmentContainerView, addGame()).
+            replace(R.id.mainFragmentContainerView, AddGame()).
             addToBackStack(null).commit()
     }
 
@@ -113,7 +112,7 @@ class MainActivity : AppCompatActivity(), loginComm, appComm {
     override fun onItemClick(position: Int) {
         val game = data[position]
         val bundle = Bundle()
-        val frag = gameDetails()
+        val frag = GameDetails()
 
         bundle.putSerializable("game",game)
         frag.arguments = bundle

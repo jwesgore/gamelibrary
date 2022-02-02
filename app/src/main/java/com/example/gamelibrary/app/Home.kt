@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gamelibrary.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -22,10 +21,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [home.newInstance] factory method to
+ * Use the [Home.newInstance] factory method to
  * create an instance of this fragment.
  */
-class home : Fragment() {
+class Home : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -41,7 +40,7 @@ class home : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         val view : View = inflater.inflate(R.layout.fragment_home, container, false)
         val appComm : appComm = activity as appComm
@@ -55,8 +54,8 @@ class home : Fragment() {
         }
 
         // recycler view stuff
-        var data : ArrayList<GameFile> = ArrayList()
-        var recyclerAdapter = recyclerAdapter(data)
+        val data : ArrayList<GameFile> = ArrayList()
+        val recyclerAdapter = RecyclerAdapter(data)
 
         recyclerAdapter.setOnItemClick(appComm)
 
@@ -99,7 +98,7 @@ class home : Fragment() {
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            home().apply {
+            Home().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

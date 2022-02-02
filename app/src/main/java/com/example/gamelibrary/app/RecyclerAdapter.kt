@@ -8,8 +8,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gamelibrary.R
 
-class recyclerAdapter(private val data : ArrayList<GameFile>) :
-    RecyclerView.Adapter<recyclerAdapter.ViewHolder>() {
+class RecyclerAdapter(private val data : ArrayList<GameFile>) :
+    RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 
     private lateinit var appComm: appComm
 
@@ -21,17 +21,13 @@ class recyclerAdapter(private val data : ArrayList<GameFile>) :
     class ViewHolder(view: View, listener: appComm) : RecyclerView.ViewHolder(view) {
 
         // fill holder with references to views
-        val title    : TextView
-        val year     : TextView
-        val platform : TextView
-        val image    : ImageView
+        val title    : TextView = view.findViewById(R.id.List_textViewTitle)
+        val year     : TextView = view.findViewById(R.id.List_textViewYear)
+        val platform : TextView = view.findViewById(R.id.List_textViewPlatform)
+        val image    : ImageView = view.findViewById(R.id.List_imageView)
 
         // initialize references
         init {
-            title    = view.findViewById(R.id.List_textViewTitle)
-            year     = view.findViewById(R.id.List_textViewYear)
-            platform = view.findViewById(R.id.List_textViewPlatform)
-            image    = view.findViewById(R.id.List_imageView)
 
             view.setOnClickListener {
                 listener.onItemClick(adapterPosition)
